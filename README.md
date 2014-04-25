@@ -52,11 +52,33 @@ PM_NO_CONFIRM=pm_no_confirm
 Install Xorg
 ============
 <pre>
-# portmaster x11-servers/xorg-server [devd] selected
-# portmaster x11-drivers/xorg-drivers
+# portmaster x11-servers/xorg-server</pre>
+[hal] unselect [devd] selected
+
+<pre># portmaster x11-drivers/xorg-drivers</pre>
+
+<pre>
+# portmaster x11/xinit
+# portmaster x11/xauth
+# portmaster x11-fonts/xorg-fonts
+# portmaster x11-fonts/webfonts <NOTE: enable WIN LICENSE>
+# portmaster x11-fonts/inconsolata-ttf
+# portmaster x11-fonts/terminus-font
+# portmaster x11-fonts/urwfonts-ttf
+# portmaster x11-fonts/ubuntu-font
 </pre>
 
+Now comes the Xorg configuration:
+<pre># Xorg -configure</pre>
 
+Then copy to the common etc directory:
+<pre># cp /root/xorg.conf.new /etc/X11/xorg.conf</pre>
+
+Setting up the moused driver: [not reviewed]
+<pre>
+# echo "moused_port=\"/dev/psm0\"" >> /etc/rc.conf
+# echo "moused_enable=\"YES\"" >> /etc/rc.conf
+</pre>
 
 References
 ==========
