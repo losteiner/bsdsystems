@@ -6,13 +6,15 @@ The repository aims to describe and help a minimal FreeBSD installation with doc
 Install
 =======
 
-ZFS pool with default settings
+ZFS pool with default settings.
 
 With services:
 - sshd
 - moused
 - lib32
 
+NOTE: In order to make it bootable I had to manually set the system bootable before installer reboot.
+<pre># gpart set -a active ada0</pre>
 
 Post-install
 ============
@@ -23,12 +25,10 @@ Post-install
 </pre>
 later: portsnap fetch update
 
-Step 1 :
 Installing portmaster in order to handle ports:
 
 As superuser
 <pre># cd /usr/ports/ports-mgmt/portmaster && make install clean</pre>
-[?] Programmable completion for Bash and Zsh --> Ok?
 
 <pre>
 #cp /usr/local/etc/portmaster.rc.sample /usr/local/etc/portmaster.rc
@@ -49,6 +49,8 @@ PM_DEL_BUILD_ONLY=pm_dbo
 PM_NO_CONFIRM=pm_no_confirm
 </pre>
 
+NOTE: Problem with ncurses can cause compilation errors later. Check here!
+
 Install Xorg
 ============
 <pre>
@@ -56,6 +58,7 @@ Install Xorg
 [hal] unselect [devd] selected
 
 <pre># portmaster x11-drivers/xorg-drivers</pre>
+Here the used video driver(s) and mouse+keyboard must be selected
 
 <pre>
 # portmaster x11/xinit
@@ -74,11 +77,46 @@ Now comes the Xorg configuration:
 Then copy to the common etc directory:
 <pre># cp /root/xorg.conf.new /etc/X11/xorg.conf</pre>
 
-Setting up the moused driver: [not reviewed]
+Setting up the moused driver: [not necesary]
 <pre>
 # echo "moused_port=\"/dev/psm0\"" >> /etc/rc.conf
 # echo "moused_enable=\"YES\"" >> /etc/rc.conf
 </pre>
+
+
+Xorg Environment
+================
+
+First of all the mindnight commander:
+<pre># portmaster misc/mc</pre>
+
+Terminal emulator URXVT and shell:
+<pre>
+#portmaster x11/rxvt-unicode
+#portmaster shells/zsh
+</pre>
+
+At the first start the zsh can be configured with a guide script and set as default shell:
+<pre># chsh -s zsh</pre>
+
+TODO: Configuration files HERE.
+
+<pre>
+# portmaster x11-wm/i3
+# portmaster x11/i3status
+# portmaster x11/dmenu
+</pre>
+
+
+Applications
+============
+
+First the web browser Opera:
+<pre># portmaster www/opera</pre>
+Here I had to make a little hack with libfreetype.so.9 issue. See /etc/libmap.conf.
+
+A very simple graphical file manager Xfe:
+<pre># portmaster x11-fm/xfe</pre>
 
 References
 ==========
