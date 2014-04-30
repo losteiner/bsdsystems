@@ -49,7 +49,7 @@ PM_DEL_BUILD_ONLY=pm_dbo
 PM_NO_CONFIRM=pm_no_confirm
 </pre>
 
-NOTE: Problem with ncurses can cause compilation errors later. Check here!
+NOTE: Problem with ncurses can cause compilation errors later. Temp solution is pkg install ncurses!
 
 Install Xorg
 ============
@@ -90,6 +90,9 @@ Xorg Environment
 First of all the mindnight commander:
 <pre># portmaster misc/mc</pre>
 
+The zip archive extractor:
+<pre># portmaster archive/unzip</pre>
+
 Terminal emulator URXVT and shell:
 <pre>
 #portmaster x11/rxvt-unicode
@@ -117,6 +120,30 @@ Here I had to make a little hack with libfreetype.so.9 issue. See /etc/libmap.co
 
 A very simple graphical file manager Xfe:
 <pre># portmaster x11-fm/xfe</pre>
+
+GIT version control system (with gitk, subversion):
+<pre># portmaster devel/git</pre>
+
+MPlayer for music and video (GUI and skin switched off):
+<pre># portmaster multimedia/mplayer</pre>
+
+
+Hardware support
+================
+
+Sound
+-----
+The HDA based audio cards should work out of the box however on HP notebooks there is a little hack.
+In /boot/device.hints there is a little pin 'magic' which solved the problem.
+
+In /boot/loader.conf:
+<pre>snd_hda_load="YES"<pre>
+
+Suspend/Resume
+--------------
+Under heavy testing with **acpiconf -s 3**.
+
+
 
 References
 ==========
