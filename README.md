@@ -3,6 +3,10 @@ freebsdsystem
 
 The repository aims to describe and help a minimal FreeBSD installation with docs and scripts
 
+piccolo machine:
+HP EliteBook 2530p - L9400 Core2Duo CPU - 4GB RAM - 120GB HDD - BIOS F.22
+
+
 Install
 =======
 
@@ -12,6 +16,9 @@ With services:
 - sshd
 - moused
 - lib32
+
+The default groups for user should be: wheel, operator. Later can be set with:
+<pre># pw groupmod [group_name] -m [user_name]</pre>
 
 NOTE: In order to make it bootable I had to manually set the system bootable before installer reboot.
 <pre># gpart set -a active ada0</pre>
@@ -127,6 +134,9 @@ GIT version control system (with gitk, subversion):
 MPlayer for music and video (GUI and skin switched off):
 <pre># portmaster multimedia/mplayer</pre>
 
+Lightweight PDF viewer:
+<pre># portmaster graphics/mupdf</pre>
+With JavaScript(V8) support
 
 Hardware support
 ================
@@ -139,9 +149,22 @@ In /boot/device.hints there is a little pin 'magic' which solved the problem.
 In /boot/loader.conf:
 <pre>snd_hda_load="YES"<pre>
 
+
 Suspend/Resume
 --------------
-Under heavy testing with **acpiconf -s 3**.
+Under heavy testing with acpiconf -s 3
+
+
+Mount USB/CD/DVD
+----------------
+<pre># portmaster sysutils/automount</pre>
+With FAT, ext4 and ntfs3g. This will install the fusefs-ntfs 
+
+<pre>
+#cp /usr/local/etc/automount.conf.sample /usr/local/etc/automount.conf
+</pre>
+
+TODO: automount.conf here
 
 
 
