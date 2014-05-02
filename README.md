@@ -138,6 +138,9 @@ Lightweight PDF viewer:
 <pre># portmaster graphics/mupdf</pre>
 With JavaScript(V8) support
 
+The mandatory Vim editor only for X11:
+<pre># portmaster -m WITH_X11_ONLY=YES editors/vim</pre>
+
 Hardware support
 ================
 
@@ -160,11 +163,11 @@ Mount USB/CD/DVD
 <pre># portmaster sysutils/automount</pre>
 With FAT, ext4 and ntfs3g. This will install the fusefs-ntfs 
 
-<pre>
-#cp /usr/local/etc/automount.conf.sample /usr/local/etc/automount.conf
-</pre>
+<pre>#cp /usr/local/etc/automount.conf.sample /usr/local/etc/automount.conf</pre>
+This file should be edited according to needs. The more important changes are in the 
+devfs.rules, devfs.conf, rc.conf, loader.conf and automount_devd.conf (this must be patched)
+ 
 
-TODO: automount.conf here
 
 
 
