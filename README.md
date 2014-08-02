@@ -150,13 +150,16 @@ The HDA based audio cards should work out of the box however on HP notebooks the
 In /boot/device.hints there is a little pin 'magic' which solved the problem.
 
 In /boot/loader.conf:
-<pre>snd_hda_load="YES"<pre>
+<pre>snd_hda_load="YES"</pre>
 
 
 Suspend/Resume
 --------------
 Under heavy testing with acpiconf -s 3
 
+Issues:
+- DRI crashes after resume
+- hdac crash after resume
 
 Mount USB/CD/DVD
 ----------------
@@ -168,7 +171,19 @@ This file should be edited according to needs. The more important changes are in
 devfs.rules, devfs.conf, rc.conf, loader.conf and automount_devd.conf (this must be patched)
  
 
+Development libraries
+=====================
+<pre>
+# portmaster devel/boost-all
+# portmaster graphics/opencv
 
+# portmaster devel/sdl12
+# portmaster graphics/sdl_gfx
+# portmaster graphics/sdl_ttf
+# portmaster graphics/sdl_image
+# portmaster net/sdl_net
+# portmaster audio/sdl_mixer
+</pre>
 
 
 References
