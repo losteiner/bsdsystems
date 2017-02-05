@@ -45,13 +45,13 @@ Setup the Slim as desktop manager:
 Then add the following lines to <b>/etc/rc.local</b>
 <pre>
 + /usr/local/bin/slim -d
-<pre>
+</pre>
 
 ... and add the following lines to <b>/etc/rc.conf.local</b> DO WE NEED DBUS??
 <pre>
 + pkg_scripts="dbus_daemon avahi_daemon"
 + dbus_enable=YES
-<pre>
+</pre>
 
 
 User-space install
